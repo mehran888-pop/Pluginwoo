@@ -4,6 +4,13 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+$has_wc = function_exists( 'WC' );
+$cart_url       = $has_wc ? wc_get_cart_url() : home_url( 'cart' );
+$checkout_url   = $has_wc ? wc_get_checkout_url() : home_url( 'checkout' );
+$account_url    = $has_wc ? wc_get_account_endpoint_url() : home_url( 'my-account' );
+$coupon_url     = $has_wc && wc_get_page_id( 'coupon' ) ? get_permalink( wc_get_page_id( 'coupon' ) ) : '#';
+$terms_url      = $has_wc && wc_get_page_id( 'terms' ) ? get_permalink( wc_get_page_id( 'terms' ) ) : '#';
+
 $socials = array(
     'instagram' => '#',
     'telegram'  => '#',
@@ -55,7 +62,7 @@ $socials = array(
             ) );
             if ( ! empty( $cats ) && ! is_wp_error( $cats ) ) :
                 foreach ( $cats as $cat ) :
-                    $cat_link = get_term_link( $cat );
+                    $cat_link = $has_wc ? get_term_link( $cat ) : home_url();
                     ?>
                 <p><a href="<?php echo esc_url( $cat_link ); ?>"><?php echo esc_html( $cat->name ); ?></a></p>
                 <?php endforeach; ?>
@@ -67,11 +74,11 @@ $socials = array(
             <h4>
                 <?php esc_html_e( 'زیرساخت‌ها', 'pluginwoo' ); ?>
             </h4>
-            <p><a href="<?php echo esc_url( wc_get_cart_url() ); ?>"><?php esc_html_e( 'سبد خرید', 'pluginwoo' ); ?></a></p>
-            <p><a href="<?php echo esc_url( wc_get_checkout_url() ); ?>"><?php esc_html_e( 'صورت‌حساب', 'pluginwoo' ); ?></a></p>
-            <p><a href="<?php echo esc_url( wc_get_account_endpoint_url() ); ?>"><?php esc_html_e( 'حساب کاربری', 'pluginwoo' ); ?></a></p>
-            <p><a href="<?php echo esc_url( wc_get_page_id( 'coupon' ) ? get_permalink( wc_get_page_id( 'coupon' ) ) : '#' ); ?>"><?php esc_html_e( 'کوپن‌ها', 'pluginwoo' ); ?></a></p>
-            <p><a href="<?php echo esc_url( wc_get_page_id( 'terms' ) ? get_permalink( wc_get_page_id( 'terms' ) ) : '#' ); ?>"><?php esc_html_e( 'قوانین و شرایط', 'pluginwoo' ); ?></a></p>
+            <p><a href="<?php echo esc_url( $cart_url ); ?>"><?php esc_html_e( 'سبد خرید', 'pluginwoo' ); ?></a></p>
+            <p><a href="<?php echo esc_url( $checkout_url ); ?>"><?php esc_html_e( 'صورت‌حساب', 'pluginwoo' ); ?></a></p>
+            <p><a href="<?php echo esc_url( $account_url ); ?>"><?php esc_html_e( 'حساب کاربری', 'pluginwoo' ); ?></a></p>
+            <p><a href="<?php echo esc_url( $coupon_url ); ?>"><?php esc_html_e( 'کوپن‌ها', 'pluginwoo' ); ?></a></p>
+            <p><a href="<?php echo esc_url( $terms_url ); ?>"><?php esc_html_e( 'قوانین و شرایط', 'pluginwoo' ); ?></a></p>
         </div>
 
         <!-- Contact -->
@@ -88,7 +95,7 @@ $socials = array(
             </p>
             <p>
                 <svg width="14" height="14" viewBox="0 0 24 24" style="vertical-align:-2px;margin-right:4px;"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.02 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .14 1.45-.36 2.48-3.25 3.58-3.57 5.44-5.51l3.34-2.68c1.55-1.21 1.9-2.87.76-4.35-.78-1-2.22-1.63-3.89-1.63h-.04c-2.75 0-4.96 2.21-4.96 4.96 0 2.26.86 4.23 2.31 5.69l2.35 2.35c.34.34.43.85.27 1.28l1.28 1.28c.34.34.85.44 1.28.27.29-.1.57-.26.81-.48l2.17-2.17c.4-.4.4-.94.01-1.34l-1.34-1.34c-.4-.4-.94-.4-.34.01z"/></svg>
-                <?php esc_html_e( 'برای پشتیبانی 연락을', 'pluginwoo' ); ?>
+                <?php esc_html_e( 'برای پشتیبانی تماس بگیرید.', 'pluginwoo' ); ?>
             </p>
         </div>
     </div>
@@ -100,7 +107,7 @@ $socials = array(
             <?php esc_html_e( '. تمامی حقوق محفوظ است.', 'pluginwoo' ); ?>
         </p>
         <div>
-            <a href="#"><?php esc_html_e( 'سياسيت حفظ حریم شخصی', 'pluginwoo' ); ?></a>
+            <a href="#"><?php esc_html_e( 'سیاست حفظ حریم شخصی', 'pluginwoo' ); ?></a>
             |
             <a href="#"><?php esc_html_e( 'سایت‌ست', 'pluginwoo' ); ?></a>
         </div>

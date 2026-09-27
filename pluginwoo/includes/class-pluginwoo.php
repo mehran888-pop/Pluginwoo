@@ -14,6 +14,11 @@ class PluginWoo {
     private static $instance = null;
 
     /**
+     * Whether WooCommerce is available.
+     */
+    protected $has_wc = false;
+
+    /**
      * Settings instance.
      */
     public $settings = null;
@@ -32,6 +37,7 @@ class PluginWoo {
      * Constructor.
      */
     public function __construct() {
+        $this->has_wc = function_exists( 'WC' );
         $this->setup_hooks();
     }
 
@@ -52,7 +58,7 @@ class PluginWoo {
      * Setup action and filter hooks.
      */
     private function setup_hooks() {
-        // Shortcodes.
+        // Shortcode —可在無WC情況下註冊 (僅顯示訊息或空白)
         add_shortcode( 'pluginwoo_cart', array( $this, 'render_cart_shortcode' ) );
         add_shortcode( 'pluginwoo_checkout', array( $this, 'render_checkout_shortcode' ) );
         add_shortcode( 'pluginwoo_myaccount', array( $this, 'render_myaccount_shortcode' ) );
@@ -65,15 +71,17 @@ class PluginWoo {
         add_shortcode( 'pluginwoo_footer', array( $this, 'render_footer_shortcode' ) );
         add_shortcode( 'pluginwoo_mobile_nav', array( $this, 'render_mobile_nav_shortcode' ) );
 
-        // Filters.
-        add_filter( 'woocommerce_cart_page_template', array( $this, 'override_cart_template' ) );
-        add_filter( 'woocommerce_checkout_page_template', array( $this, 'override_checkout_template' ) );
-        add_filter( 'woocommerce_account_page_template', array( $this, 'override_myaccount_template' ) );
-        add_filter( 'woocommerce_shop_page_template', array( $this, 'override_shop_template' ) );
-        add_filter( 'woocommerce_single_product_page_template', array( $this, 'override_single_product_template' ) );
-        add_filter( 'woocommerce_locate_template', array( $this, 'locate_custom_template' ), 10, 3 );
-        add_filter( 'woocommerce_add_to_cart_message', array( $this, 'add_to_cart_custom_message' ), 10, 2 );
-        add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'add_to_cart_fragments' ) );
+        // Filters — only when WC is available.
+        if ( $this->has_wc ) {
+            add_filter( 'woocommerce_cart_page_template', array( $this, 'override_cart_template' ) );
+            add_filter( 'woocommerce_checkout_page_template', array( $this, 'override_checkout_template' ) );
+            add_filter( 'woocommerce_account_page_template', array( $this, 'override_myaccount_template' ) );
+            add_filter( 'woocommerce_shop_page_template', array( $this, 'override_shop_template' ) );
+            add_filter( 'woocommerce_single_product_page_template', array( $this, 'override_single_product_template' ) );
+            add_filter( 'woocommerce_locate_template', array( $this, 'locate_custom_template' ), 10, 3 );
+            add_filter( 'woocommerce_add_to_cart_message', array( $this, 'add_to_cart_custom_message' ), 10, 2 );
+            add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'add_to_cart_fragments' ) );
+        }
         add_filter( 'pluginwoo_settings_array', array( $this, 'define_settings' ) );
 
         // Admin enqueues.
@@ -362,30 +370,39 @@ class PluginWoo {
     // ─── Shortcodes ─────────────────────────────────────────────────────────
 
     public function render_cart_shortcode( $atts ) {
+        if ( ! $this->has_wc ) {
+            return '<p class="pluginwoo-notice pluginwoo-notice--warning">' . esc_html__( 'ووکامرس برای نمایش این بخش نیاز است.', 'pluginwoo' ) . '</p>';
+        }
+        if ( ! WC()->cart || WC()->cart->is_empty() ) {
+            return '<p class="pluginwoo-notice pluginwoo-notice--info">' . esc_html__( 'سبد خرید شما خالی است. محصولی را اضافه کنید.', 'pluginwoo' ) . '</p>';
+        }
         $atts = shortcode_atts( array(
             'template' => 'modern',
         ), $atts, 'pluginwoo_cart' );
-
         ob_start();
         $this->include_template( 'cart/cart-' . sanitize_key( $atts['template'] ) . '.php', array( 'shortcode' => true ) );
         return ob_get_clean();
     }
 
     public function render_checkout_shortcode( $atts ) {
+        if ( ! $this->has_wc ) {
+            return '<p class="pluginwoo-notice pluginwoo-notice--warning">' . esc_html__( 'ووکامرس برای نمایش این بخش نیاز است.', 'pluginwoo' ) . '</p>';
+        }
         $atts = shortcode_atts( array(
             'template' => 'modern',
         ), $atts, 'pluginwoo_checkout' );
-
         ob_start();
         $this->include_template( 'checkout/checkout-' . sanitize_key( $atts['template'] ) . '.php' );
         return ob_get_clean();
     }
 
     public function render_myaccount_shortcode( $atts ) {
+        if ( ! $this->has_wc ) {
+            return '<p class="pluginwoo-notice pluginwoo-notice--warning">' . esc_html__( 'ووکامرس برای نمایش این بخش نیاز است.', 'pluginwoo' ) . '</p>';
+        }
         $atts = shortcode_atts( array(
             'template' => 'modern',
         ), $atts, 'pluginwoo_myaccount' );
-
         ob_start();
         $this->include_template( 'myaccount/myaccount-' . sanitize_key( $atts['template'] ) . '.php' );
         return ob_get_clean();
@@ -443,18 +460,24 @@ class PluginWoo {
     }
 
     public function render_store_page_shortcode( $atts ) {
+        if ( ! $this->has_wc ) {
+            return '<p class="pluginwoo-notice pluginwoo-notice--warning">' . esc_html__( 'ووکامرس برای نمایش این بخش نیاز است.', 'pluginwoo' ) . '</p>';
+        }
         $atts = shortcode_atts( array(
             'template' => 'creative',
         ), $atts, 'pluginwoo_store_page' );
-
         ob_start();
         $this->include_template( 'store-page/store-' . sanitize_key( $atts['template'] ) . '.php' );
         return ob_get_clean();
     }
 
     public function render_product_page_alt_shortcode( $atts ) {
+        if ( ! $this->has_wc ) {
+            return '<p class="pluginwoo-notice pluginwoo-notice--warning">' . esc_html__( 'ووکامرس برای نمایش این بخش نیاز است.', 'pluginwoo' ) . '</p>';
+        }
         $atts = shortcode_atts( array(
             'product_id' => '',
+
             'template'   => 'modern',
         ), $atts, 'pluginwoo_product_page_alt' );
 
@@ -495,61 +518,54 @@ class PluginWoo {
     // ─── Template Overrides ─────────────────────────────────────────────────
 
     public function override_cart_template( $template ) {
+        if ( ! $this->has_wc ) { return $template; }
         $selected = $this->get_setting( 'cart_template' );
         $custom   = $this->get_custom_template_path( 'cart/cart-' . $selected . '.php' );
-        if ( $custom ) {
-            return $custom;
-        }
+        if ( $custom ) { return $custom; }
         return $template;
     }
 
     public function override_checkout_template( $template ) {
+        if ( ! $this->has_wc ) { return $template; }
         $selected = $this->get_setting( 'checkout_template' );
         $custom   = $this->get_custom_template_path( 'checkout/checkout-' . $selected . '.php' );
-        if ( $custom ) {
-            return $custom;
-        }
+        if ( $custom ) { return $custom; }
         return $template;
     }
 
     public function override_myaccount_template( $template ) {
+        if ( ! $this->has_wc ) { return $template; }
         $selected = $this->get_setting( 'myaccount_template' );
         $custom   = $this->get_custom_template_path( 'myaccount/myaccount-' . $selected . '.php' );
-        if ( $custom ) {
-            return $custom;
-        }
+        if ( $custom ) { return $custom; }
         return $template;
     }
 
     public function override_shop_template( $template ) {
+        if ( ! $this->has_wc ) { return $template; }
         $selected = $this->get_setting( 'store_page_template' );
         $custom   = $this->get_custom_template_path( 'store-page/store-' . $selected . '.php' );
-        if ( $custom ) {
-            return $custom;
-        }
+        if ( $custom ) { return $custom; }
         return $template;
     }
 
     public function override_single_product_template( $template ) {
+        if ( ! $this->has_wc ) { return $template; }
         $selected = $this->get_setting( 'product_page_template' );
         $custom   = $this->get_custom_template_path( 'product-page/product-' . $selected . '.php' );
-        if ( $custom ) {
-            return $custom;
-        }
+        if ( $custom ) { return $custom; }
         return $template;
     }
 
     public function locate_custom_template( $template, $template_name, $template_path ) {
-        // Only intercept our templates.
+        if ( ! $this->has_wc ) { return $template; }
         if ( strpos( $template_name, 'pluginwoo' ) !== 0 ) {
             return $template;
         }
         $selected = $this->get_setting( str_replace( 'pluginwoo_', '', $template_name ) . '_template' );
         if ( $selected ) {
             $custom = $this->get_custom_template_path( $template_name . '-' . $selected . '.php' );
-            if ( $custom ) {
-                return $custom;
-            }
+            if ( $custom ) { return $custom; }
         }
         return $template;
     }
@@ -564,6 +580,7 @@ class PluginWoo {
     }
 
     public function add_to_cart_fragments( $fragments ) {
+        if ( ! $this->has_wc ) { return $fragments; }
         if ( ! $this->get_setting( 'atc_effect_enabled' ) ) {
             return $fragments;
         }
@@ -571,9 +588,9 @@ class PluginWoo {
         $fragments['div.widget_shopping_cart'] = wc_get_template_html(
             'cart/mini-cart.php',
             array(
-                'cart_page_url' => wc_get_cart_url(),
+                'cart_page_url'      => wc_get_cart_url(),
                 'should_load_cart_fragments' => true,
-                'cart_hash' => wc_clean( WC()->cart->get_cart_hash() ),
+                'cart_hash'          => wc_clean( WC()->cart->get_cart_hash() ),
             ),
             '',
             'pluginwoo'
@@ -583,6 +600,9 @@ class PluginWoo {
     }
 
     public function atc_animation_ajax() {
+        if ( ! $this->has_wc ) {
+            wp_send_json_error( 'WooCommerce is not available.' );
+        }
         check_ajax_referer( 'pluginwoo_atc_nonce', 'nonce' );
 
         $product_id = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
@@ -675,7 +695,7 @@ class PluginWoo {
             PLUGINWOO_VERSION,
             true
         );
-        if ( $this->get_setting( 'atc_effect_enabled' ) ) {
+        if ( $this->has_wc && $this->get_setting( 'atc_effect_enabled' ) ) {
             wp_enqueue_script(
                 'pluginwoo-atc',
                 PLUGINWOO_ASSETS_URL . 'js/add-to-cart.js',
@@ -793,9 +813,11 @@ class PluginWoo {
         if ( has_shortcode( $post->post_content, 'pluginwoo_' ) ) {
             return true;
         }
-        // Check if on WooCommerce pages.
-        if ( is_cart() || is_checkout() || is_account_page() || is_shop() || is_product() ) {
-            return true;
+        // Check if on WooCommerce pages (only when WC is available).
+        if ( $this->has_wc ) {
+            if ( is_cart() || is_checkout() || is_account_page() || is_shop() || is_product() ) {
+                return true;
+            }
         }
         return false;
     }

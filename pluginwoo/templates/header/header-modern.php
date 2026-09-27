@@ -4,7 +4,11 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$cart_count = WC()->cart->get_cart_contents_count();
+$has_wc     = function_exists( 'WC' );
+$cart_count = $has_wc && WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
+$account_url = $has_wc ? wc_get_account_endpoint_url() : home_url( 'my-account' );
+$checkout_url = $has_wc ? wc_get_checkout_url() : home_url( 'checkout' );
+$cart_url      = $has_wc ? wc_get_cart_url() : home_url( 'cart' );
 ?>
 <header class="pluginwoo-header pluginwoo-header--modern" role="banner">
     <div class="pw-hdr-inner">
@@ -25,19 +29,21 @@ $cart_count = WC()->cart->get_cart_contents_count();
         </nav>
 
         <div class="pw-hdr-actions">
-            <a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_my_account_page_id' ) ) ); ?>"
+            <?php if ( $has_wc ) : ?>
+            <a href="<?php echo esc_url( $account_url ); ?>"
                class="pw-hdr-btn"
                style="padding:8px 16px;border-radius:50px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);cursor:pointer;font-size:13px;font-family:var(--pw-font);font-weight:600;color:#fff;display:flex;align-items:center;gap:6px;transition:all .2s;text-decoration:none;">
                 <svg width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                 <?php esc_html_e( 'اکانت', 'pluginwoo' ); ?>
             </a>
-            <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>"
+            <a href="<?php echo esc_url( $checkout_url ); ?>"
                class="pw-hdr-btn"
                style="padding:8px 16px;border-radius:50px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);cursor:pointer;font-size:13px;font-family:var(--pw-font);font-weight:600;color:#fff;display:flex;align-items:center;gap:6px;transition:all .2s;text-decoration:none;">
                 <svg width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M3 7h6v13H3V7zm9-4h3v13h-3V3zm-3 9h6v3h-6v-3zm0-5h6v3h-6V7z"/></svg>
                 <?php esc_html_e( 'صورت‌حساب', 'pluginwoo' ); ?>
             </a>
-            <a href="<?php echo esc_url( wc_get_cart_url() ); ?>"
+            <?php endif; ?>
+            <a href="<?php echo esc_url( $cart_url ); ?>"
                class="pw-hdr-cart-btn"
                style="position:relative;padding:8px 16px;background:#fff;color:var(--pw-primary);border:none;border-radius:50px;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:var(--pw-font);font-weight:700;transition:all .2s;text-decoration:none;transform:translateY(-1px);"
                aria-label="<?php esc_attr_e( 'My cart', 'pluginwoo' ); ?>">
@@ -51,3 +57,20 @@ $cart_count = WC()->cart->get_cart_contents_count();
         </div>
     </div>
 </header>
+
+<?php
+if ( ! function_exists( 'pluginwoo_default_nav' ) ) :
+    function pluginwoo_default_nav() {
+        $shop_url_fb    = $has_wc ? wc_get_shop_url() : home_url( 'shop' );
+        $cart_url_fb   = $has_wc ? wc_get_cart_url() : home_url( 'cart' );
+        $account_url_fb = $has_wc ? wc_get_account_endpoint_url() : home_url( 'my-account' );
+        ?>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;gap:4px;">
+            <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="text-decoration:none;color:var(--pw-text);font-size:14px;padding:6px 12px;border-radius:var(--pw-radius-sm);transition:all .15s;font-family:var(--pw-font);">خانه</a></li>
+            <li><a href="<?php echo esc_url( $shop_url_fb ); ?>" style="text-decoration:none;color:var(--pw-text);font-size:14px;padding:6px 12px;border-radius:var(--pw-radius-sm);transition:all .15s;font-family:var(--pw-font);">فروشگاه</a></li>
+            <li><a href="<?php echo esc_url( $cart_url_fb ); ?>" style="text-decoration:none;color:var(--pw-text);font-size:14px;padding:6px 12px;border-radius:var(--pw-radius-sm);transition:all .15s;font-family:var(--pw-font);">سبد خرید</a></li>
+            <li><a href="<?php echo esc_url( $account_url_fb ); ?>" style="text-decoration:none;color:var(--pw-text);font-size:14px;padding:6px 12px;border-radius:var(--pw-radius-sm);transition:all .15s;font-family:var(--pw-font);">حساب کاربری</a></li>
+        </ul>
+        <?php
+    }
+endif;

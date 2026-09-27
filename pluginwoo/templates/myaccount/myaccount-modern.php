@@ -3,8 +3,10 @@
  * Template: Modern My Account
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-$user = wp_get_current_user();
-$current_user = wc_get_order_count_for_user( $user->ID );
+
+$has_wc       = function_exists( 'WC' );
+$user         = wp_get_current_user();
+$current_user = $has_wc ? wc_get_order_count_for_user( $user->ID ) : 0;
 ?>
 <div class="pluginwoo-wrapper pluginwoo-myaccount-modern">
     <!-- Header -->

@@ -26,8 +26,17 @@ define( 'PLUGINWOO_ASSETS_URL', PLUGINWOO_PLUGIN_URL . 'assets/' );
 define( 'PLUGINWOO_TEMPLATE_DIR', PLUGINWOO_PLUGIN_DIR . 'templates/' );
 
 // Check for WooCommerce.
-if ( ! class_exists( 'WooCommerce' ) ) {
+// Use function_exists( 'WC' ) — more robust than class_exists( 'WooCommerce' )
+// when WC is loaded via Composer / autoloader / MU-plugins.
+if ( ! function_exists( 'WC' ) ) {
     add_action( 'admin_notices', 'pluginwoo_wc_missing_notice' );
+
+    // Load ONLY the admin class so settings page remains accessible in dev mode.
+    require_once PLUGINWOO_PLUGIN_DIR . 'includes/class-pluginwoo-admin.php';
+    PluginWoo_Admin_Settings::get_instance()->init();
+    load_plugin_textdomain( 'pluginwoo', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+
+    // Do NOT load WC-dependent classes.
     return;
 }
 
@@ -63,8 +72,10 @@ function pluginwoo() {
  */
 function pluginwoo_wc_missing_notice() {
     ?>
-    <div class="notice notice-error">
-        <p><?php esc_html_e( 'PluginWoo requires WooCommerce to be installed and activated.', 'pluginwoo' ); ?></p>
+    <div class="notice notice-warning is-dismissible">
+        <p><strong><?php esc_html_e( 'PluginWoo — نکته:', 'pluginwoo' ); ?></strong>
+        <?php esc_html_e( 'این افزونه برای قابلیت‌های Commerce نیازمند نصب ووکامرس (۱۱.۱.۱ به بالا) است. پیشخوان تنظیمات همچنان در دسترس است.', 'pluginwoo' ); ?></p>
+        <p style="margin-top:6px;"><a href="https://wordpress.org/plugins/woocommerce/" target="_blank" rel="noopener"><?php esc_html_e( 'نصب ووکامرس ← اینجا', 'pluginwoo' ); ?></a></p>
     </div>
     <?php
 }

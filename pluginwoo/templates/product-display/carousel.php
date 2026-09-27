@@ -5,7 +5,8 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$atts   = $atts ?? array();
+$has_wc  = function_exists( 'WC' );
+$atts     = $atts ?? array();
 $wp_query = PluginWoo_Product_Display::get_products( $atts );
 ?>
 <div class="pluginwoo-product-display pluginwoo-product-display--carousel" id="pluginwoo-product-display-<?php echo esc_attr( md5( json_encode( $atts ) ) ); ?>">

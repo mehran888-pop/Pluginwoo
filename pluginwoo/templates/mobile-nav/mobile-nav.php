@@ -5,15 +5,17 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$home_url    = home_url( '/' );
-$shop_url    = wc_get_shop_url();
-$cart_url    = wc_get_cart_url();
-$account_url = wc_get_account_endpoint_url();
-$cart_count  = WC()->cart->get_cart_contents_count();
-$home_active = is_front_page() || is_home() || is_main_query();
-$shop_active = is_shop() || is_product_category();
-$cart_active = is_cart();
-$account_active = is_account_page();
+$has_wc = function_exists( 'WC' );
+
+$home_url = home_url( '/' );
+$shop_url    = $has_wc ? wc_get_shop_url() : home_url( 'shop' );
+$cart_url    = $has_wc ? wc_get_cart_url() : home_url( 'cart' );
+$account_url = $has_wc ? wc_get_account_endpoint_url() : home_url( 'my-account' );
+$cart_count  = $has_wc && WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
+$home_active = ! $has_wc || is_front_page() || is_home() || is_main_query();
+$shop_active = $has_wc ? ( is_shop() || is_product_category() ) : false;
+$cart_active = $has_wc ? is_cart() : false;
+$account_active = $has_wc ? is_account_page() : false;
 
 // Format page title for nav item.
 $home_text   = __( 'خانه', 'pluginwoo' );

@@ -4,7 +4,10 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$cart_count = WC()->cart->get_cart_contents_count();
+$has_wc     = function_exists( 'WC' );
+$cart_count = $has_wc && WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
+$cart_url   = $has_wc ? wc_get_cart_url() : home_url( 'cart' );
+$account_url = $has_wc ? wc_get_account_endpoint_url() : home_url( 'my-account' );
 ?>
 <header class="pluginwoo-header pluginwoo-header--minimal" role="banner">
     <div class="pw-hdr-inner">
@@ -23,7 +26,7 @@ $cart_count = WC()->cart->get_cart_contents_count();
         </nav>
 
         <div class="pw-hdr-actions" style="display:flex;align-items:center;gap:8px;">
-            <a href="<?php echo esc_url( wc_get_cart_url() ); ?>"
+            <a href="<?php echo esc_url( $cart_url ); ?>"
                style="text-decoration:none;color:var(--pw-primary);font-size:13px;font-weight:600;font-family:var(--pw-font);padding:6px 10px;border-radius:var(--pw-radius-sm);transition:all .15s;"
                aria-label="<?php esc_attr_e( 'Cart', 'pluginwoo' ); ?>">
                 <svg width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm13-2h-4v-2h-4v2H2v-4h2v10zm0-12h-4V4h-4v2H2v4h2v4zm0 4h-4v2H2v-2H0v-4h2v4zm11-5H9v2h4V7zm-4 2h2v2h-2V9zm6 6h-2v2h2v-2zm-2-6h-2V9h2v2z"/></svg>
@@ -31,11 +34,30 @@ $cart_count = WC()->cart->get_cart_contents_count();
                 <span style="font-weight:700;font-size:13px;"><?php echo esc_html( $cart_count ); ?></span>
                 <?php endif; ?>
             </a>
-            <a href="<?php echo esc_url( wc_get_account_endpoint_url() ); ?>"
+            <?php if ( $has_wc ) : ?>
+            <a href="<?php echo esc_url( $account_url ); ?>"
                style="text-decoration:none;color:var(--pw-text-muted);font-size:13px;font-family:var(--pw-font);padding:6px 10px;border-radius:var(--pw-radius-sm);transition:all .15s;"
                aria-label="<?php esc_attr_e( 'Account', 'pluginwoo' ); ?>">
                 حساب
             </a>
+            <?php endif; ?>
         </div>
     </div>
 </header>
+
+<?php
+if ( ! function_exists( 'pluginwoo_default_nav' ) ) :
+    function pluginwoo_default_nav() {
+        $shop_url_fb    = $has_wc ? wc_get_shop_url() : home_url( 'shop' );
+        $cart_url_fb   = $has_wc ? wc_get_cart_url() : home_url( 'cart' );
+        $account_url_fb = $has_wc ? wc_get_account_endpoint_url() : home_url( 'my-account' );
+        ?>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;gap:2px;">
+            <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="text-decoration:none;color:var(--pw-text-muted);font-size:13px;padding:4px 8px;border-radius:var(--pw-radius-sm);transition:all .15s;font-family:var(--pw-font);">خانه</a></li>
+            <li><a href="<?php echo esc_url( $shop_url_fb ); ?>" style="text-decoration:none;color:var(--pw-text-muted);font-size:13px;padding:4px 8px;border-radius:var(--pw-radius-sm);transition:all .15s;font-family:var(--pw-font);">فروشگاه</a></li>
+            <li><a href="<?php echo esc_url( $cart_url_fb ); ?>" style="text-decoration:none;color:var(--pw-text-muted);font-size:13px;padding:4px 8px;border-radius:var(--pw-radius-sm);transition:all .15s;font-family:var(--pw-font);">سبد خرید</a></li>
+            <li><a href="<?php echo esc_url( $account_url_fb ); ?>" style="text-decoration:none;color:var(--pw-text-muted);font-size:13px;padding:4px 8px;border-radius:var(--pw-radius-sm);transition:all .15s;font-family:var(--pw-font);">حساب</a></li>
+        </ul>
+        <?php
+    }
+endif;
