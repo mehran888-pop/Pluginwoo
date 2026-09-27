@@ -1,0 +1,349 @@
+/* ===============================
+   PluginWoo — Product Page Styles
+   templates: default, modern, creative
+   =============================== */
+
+/* ─── Modern Product Page ──────────────────── */
+
+.pluginwoo-product-modern {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 24px;
+    padding: 24px 0;
+    align-items: start;
+}
+
+@media (max-width: 992px) {
+    .pluginwoo-product-modern {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Left: Gallery */
+.pluginwoo-product-modern .pw-pm-gallery {
+    background: var(--pw-bg-card);
+    border-radius: var(--pw-radius);
+    overflow: hidden;
+    box-shadow: var(--pw-shadow-sm);
+}
+
+.pluginwoo-product-modern .pw-pm-gallery-main {
+    aspect-ratio: 4/3;
+    background: var(--pw-bg-light);
+    overflow: hidden;
+    position: relative;
+}
+
+.pluginwoo-product-modern .pw-pm-gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s;
+}
+
+.pluginwoo-product-modern .pw-pm-gallery-main:hover img {
+    transform: scale(1.02);
+}
+
+.pluginwoo-product-modern .pw-pm-thumbs {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid var(--pw-border);
+}
+
+.pluginwoo-product-modern .pw-pm-thumb {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--pw-radius-sm);
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color .15s;
+    background: var(--pw-bg-light);
+}
+
+.pluginwoo-product-modern .pw-pm-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pluginwoo-product-modern .pw-pm-thumb.active,
+.pluginwoo-product-modern .pw-pm-thumb:hover {
+    border-color: var(--pw-primary);
+}
+
+/* Right: Product Info */
+.pluginwoo-product-modern .pw-pm-info {
+    background: var(--pw-bg-card);
+    border-radius: var(--pw-radius);
+    padding: 24px;
+    box-shadow: var(--pw-shadow-sm);
+    position: sticky;
+    top: 20px;
+}
+
+.pluginwoo-product-modern .pw-pm-category {
+    font-size: 12px;
+    color: var(--pw-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 6px;
+}
+
+.pluginwoo-product-modern .pw-pm-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-family: var(--pw-font);
+    line-height: 1.4;
+}
+
+.pluginwoo-product-modern .pw-pm-rating {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pluginwoo-product-modern .pw-pm-rating-stars {
+    color: var(--pw-accent);
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.pluginwoo-product-modern .pw-pm-rating-count {
+    font-size: 13px;
+    color: var(--pw-text-muted);
+}
+
+.pluginwoo-product-modern .pw-pm-price {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--pw-primary);
+    margin-bottom: 4px;
+}
+
+.pluginwoo-product-modern .pw-pm-price del {
+    font-size: 15px;
+    color: var(--pw-text-muted);
+    font-weight: 400;
+    margin-left: 8px;
+}
+
+.pluginwoo-product-modern .pw-pm-short-desc {
+    color: var(--pw-text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pluginwoo-product-modern .pw-pm-desc {
+    color: var(--pw-text-muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.pluginwoo-product-modern .pw-pm-divider {
+    border: none;
+    border-top: 1px solid var(--pw-border);
+    margin: 20px 0;
+}
+
+/* Quantity + Add to Cart */
+.pluginwoo-product-modern .pw-pm-atc-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.pluginwoo-product-modern .pw-pm-qty {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--pw-border);
+    border-radius: var(--pw-radius-sm);
+    overflow: hidden;
+}
+
+.pluginwoo-product-modern .pw-pm-qty-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--pw-bg-light);
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--pw-text);
+    transition: background .15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pluginwoo-product-modern .pw-pm-qty-btn:hover {
+    background: var(--pw-primary);
+    color: #fff;
+}
+
+.pluginwoo-product-modern .pw-pm-qty-input {
+    width: 56px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    background: #fff;
+    padding: 8px;
+    font-family: var(--pw-font);
+}
+
+.pluginwoo-product-modern .pw-pm-atc-btn {
+    flex: 1;
+    padding: 14px 24px;
+    background: var(--pw-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--pw-radius-sm);
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: var(--pw-font);
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.pluginwoo-product-modern .pw-pm-atc-btn:hover {
+    background: var(--pw-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(79,70,229,.4);
+}
+
+/* Stock & extras */
+.pluginwoo-product-modern .pw-pm-stock {
+    font-size: 13px;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.pluginwoo-product-modern .pw-pm-stock.in-stock { color: var(--pw-secondary); }
+.pluginwoo-product-modern .pw-pm-stock.out-stock { color: #ef4444; }
+
+.pluginwoo-product-modern .pw-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.pluginwoo-product-modern .pw-tag {
+    padding: 4px 10px;
+    border: 1px solid var(--pw-border);
+    border-radius: 50px;
+    font-size: 12px;
+    color: var(--pw-text-muted);
+}
+
+/* Tabs */
+.pluginwoo-product-modern .pw-pm-tabs {
+    margin-top: 16px;
+}
+
+.pluginwoo-product-modern .pw-pm-tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    font-family: var(--pw-font);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--pw-text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all .15s;
+}
+
+.pluginwoo-product-modern .pw-pm-tab-btn.active,
+.pluginwoo-product-modern .pw-pm-tab-btn:hover {
+    color: var(--pw-primary);
+    border-bottom-color: var(--pw-primary);
+}
+
+.pluginwoo-product-modern .pw-pm-tab-content {
+    padding: 16px 0;
+    color: var(--pw-text-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ─── Creative Product Page ──────────────── */
+
+.pluginwoo-product-creative {
+    padding: 30px 0;
+    background: var(--pw-bg-light);
+}
+
+.pluginwoo-product-creative .pw-pc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .pluginwoo-product-creative .pw-pc-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pluginwoo-product-creative .pw-pc-gallery {
+    background: var(--pw-bg-card);
+    border-radius: var(--pw-radius);
+    overflow: hidden;
+    box-shadow: var(--pw-shadow);
+    position: relative;
+}
+
+.pluginwoo-product-creative .pw-pc-gallery img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
+}
+
+.pluginwoo-product-creative .pw-pc-info {
+    background: var(--pw-bg-card);
+    border-radius: var(--pw-radius);
+    padding: 28px;
+    box-shadow: var(--pw-shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.pluginwoo-product-creative .pw-pc-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--pw-primary), var(--pw-secondary));
+}
+
+/* ─── Default Product Page ──────────────── */
+.pluginwoo-product-default {
+    padding: 20px 0;
+}

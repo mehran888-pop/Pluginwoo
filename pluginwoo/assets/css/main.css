@@ -1,0 +1,240 @@
+/* ===============================
+   PluginWoo — Main Stylesheet
+   =============================== */
+
+:root {
+    --pw-primary: #4f46e5;
+    --pw-primary-dark: #3730a3;
+    --pw-secondary: #10b981;
+    --pw-secondary-dark: #059669;
+    --pw-accent: #f59e0b;
+    --pw-accent-dark: #d97706;
+    --pw-bg-light: #f8fafc;
+    --pw-bg-card: #ffffff;
+    --pw-text: #1e293b;
+    --pw-text-muted: #64748b;
+    --pw-border: #e2e8f0;
+    --pw-radius: 16px;
+    --pw-radius-sm: 8px;
+    --pw-shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+    --pw-shadow: 0 4px 16px rgba(0,0,0,.1);
+    --pw-shadow-lg: 0 10px 40px rgba(0,0,0,.12);
+    --pw-font: Vazirmatn, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Theme font override from settings */
+.wf-active body,
+body.wf-active {
+    font-family: var(--pw-font);
+}
+
+/* ─── Base ──────────────────────────────────────── */
+
+.pluginwoo-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.pluginwoo-section {
+    padding: 40px 0;
+}
+
+.pluginwoo-section--sm {
+    padding: 20px 0;
+}
+
+/* ─── Cards ──────────────────────────────────────── */
+
+.pluginwoo-card {
+    background: var(--pw-bg-card);
+    border-radius: var(--pw-radius);
+    box-shadow: var(--pw-shadow-sm);
+    padding: 24px;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.pluginwoo-card:hover {
+    box-shadow: var(--pw-shadow);
+}
+
+/* ─── Buttons ────────────────────────────────────── */
+
+.pluginwoo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    transition: all .2s ease;
+    text-decoration: none;
+    font-family: var(--pw-font);
+}
+
+.pluginwoo-btn--primary {
+    background: var(--pw-primary);
+    color: #fff;
+}
+
+.pluginwoo-btn--primary:hover {
+    background: var(--pw-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(79,70,229,.4);
+}
+
+.pluginwoo-btn--secondary {
+    background: var(--pw-secondary);
+    color: #fff;
+}
+
+.pluginwoo-btn--secondary:hover {
+    background: var(--pw-secondary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(16,185,129,.4);
+}
+
+.pluginwoo-btn--accent {
+    background: var(--pw-accent);
+    color: #fff;
+}
+
+.pluginwoo-btn--accent:hover {
+    background: var(--pw-accent-dark);
+}
+
+/* ─── Badges ─────────────────────────────────────── */
+
+.pluginwoo-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.pluginwoo-badge--primary {
+    background: var(--pw-primary);
+    color: #fff;
+}
+
+.pluginwoo-badge--secondary {
+    background: var(--pw-secondary);
+    color: #fff;
+}
+
+.pluginwoo-badge--accent {
+    background: var(--pw-accent);
+    color: #1a1a2e;
+}
+
+.pluginwoo-badge--sale {
+    background: #ef4444;
+    color: #fff;
+}
+
+/* ─── Tabs ──────────────────────────────────────── */
+
+.pluginwoo-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--pw-border);
+}
+
+.pluginwoo-tab-btn {
+    padding: 12px 24px;
+    border: none;
+    background: none;
+    font-family: var(--pw-font);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--pw-text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all .2s ease;
+}
+
+.pluginwoo-tab-btn.active,
+.pluginwoo-tab-btn:hover {
+    color: var(--pw-primary);
+    border-bottom-color: var(--pw-primary);
+}
+
+/* ─── Notices ────────────────────────────────────── */
+
+.pluginwoo-notice {
+    padding: 12px 20px;
+    border-radius: var(--pw-radius-sm);
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.pluginwoo-notice--success {
+    background: #d1fae5;
+    border-left: 4px solid var(--pw-secondary);
+    color: #065f46;
+}
+
+.pluginwoo-notice--info {
+    background: #dbeafe;
+    border-left: 4px solid var(--pw-primary);
+    color: #1e40af;
+}
+
+.pluginwoo-notice--warning {
+    background: #fef3c7;
+    border-left: 4px solid var(--pw-accent);
+    color: #92400e;
+}
+
+/* ─── Spinner ────────────────────────────────────── */
+
+.pluginwoo-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(79,70,229,.2);
+    border-top-color: var(--pw-primary);
+    border-radius: 50%;
+    animation: pw-spin .6s linear infinite;
+}
+
+@keyframes pw-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─── Scrollbar ───────────────────────────────────── */
+
+.pluginwoo-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.pluginwoo-scroll::-webkit-scrollbar-track {
+    background: var(--pw-bg-light);
+    border-radius: 4px;
+}
+
+.pluginwoo-scroll::-webkit-scrollbar-thumb {
+    background: var(--pw-border);
+    border-radius: 4px;
+}
+
+.pluginwoo-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--pw-text-muted);
+}
+
+/* RTL support */
+[dir="rtl"] .pluginwoo-btn {
+    flex-direction: row-reverse;
+}
+
+/* ─── Typography helpers ────────────────────────── */
+
+.pluginwoo-text-muted { color: var(--pw-text-muted); }
+.pluginwoo-text-sm    { font-size: 13px; }
+.pluginwoo-text-lg    { font-size: 18px; }
+.pluginwoo-font-heading { font-family: var(--pw-font); }

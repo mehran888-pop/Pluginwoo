@@ -1,0 +1,287 @@
+/* ===============================
+   PluginWoo — Admin Settings Styles
+   پیشخوان تنظیمات حرفه‌ای
+   =============================== */
+
+.pluginwoo-admin-wrap {
+    max-width: 1100px;
+    margin-top: 16px;
+}
+
+.pluginwoo-admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--pw-border);
+}
+
+.pluginwoo-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pluginwoo-logo-icon {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, var(--pw-primary), var(--pw-secondary));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(79,70,229,.3);
+}
+
+.pluginwoo-logo-text {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--pw-primary);
+    font-family: var(--pw-font);
+    letter-spacing: -.02em;
+}
+
+.pluginwoo-version {
+    background: var(--pw-bg-light);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--pw-text-muted);
+}
+
+.pluginwoo-page-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin: 16px 0 6px;
+    font-family: var(--pw-font);
+    color: var(--pw-text);
+}
+
+.pluginwoo-intro {
+    color: var(--pw-text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+/* Section tabs */
+.pluginwoo-settings-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 2px solid var(--pw-border);
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.pluginwoo-settings-tabs .pw-set-tab {
+    padding: 10px 18px;
+    border: none;
+    background: none;
+    font-family: var(--pw-font);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--pw-text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all .15s;
+}
+
+.pluginwoo-settings-tabs .pw-set-tab.active,
+.pluginwoo-settings-tabs .pw-set-tab:hover {
+    color: var(--pw-primary);
+    border-bottom-color: var(--pw-primary);
+}
+
+/* Section card */
+.pluginwoo-set-section {
+    background: var(--pw-bg-card);
+    border-radius: var(--pw-radius);
+    box-shadow: var(--pw-shadow-sm);
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid var(--pw-border);
+}
+
+.pluginwoo-set-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--pw-border);
+    font-family: var(--pw-font);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pluginwoo-set-section-title svg {
+    width: 20px;
+    height: 20px;
+    color: var(--pw-primary);
+}
+
+/* Field grid */
+.pluginwoo-fields-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 24px;
+}
+
+@media (max-width: 600px) {
+    .pluginwoo-fields-grid { grid-template-columns: 1fr; }
+}
+
+/* Individual fields */
+.pluginwoo-field-text,
+.pluginwoo-field-select,
+.pluginwoo-field-color,
+.pluginwoo-field-checkbox,
+.pluginwoo-field-textarea {
+    margin-bottom: 16px;
+}
+
+.pluginwoo-field-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-family: var(--pw-font);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pluginwoo-field-desc {
+    font-size: 12px;
+    color: var(--pw-text-muted);
+    margin-top: 4px;
+    font-style: italic;
+}
+
+.pluginwoo-field-text input[type="text"],
+.pluginwoo-field-select select,
+.pluginwoo-field-color input[type="text"] {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1.5px solid var(--pw-border);
+    border-radius: var(--pw-radius-sm);
+    font-size: 13px;
+    font-family: var(--pw-font);
+    background: #fff;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.pluginwoo-field-text input[type="text"]:focus,
+.pluginwoo-field-select select:focus {
+    border-color: var(--pw-primary);
+    box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+    outline: none;
+}
+
+.pluginwoo-field-select select {
+    cursor: pointer;
+}
+
+.pluginwoo-field-color input[type="color"] {
+    width: 48px;
+    height: 36px;
+    padding: 2px;
+    border: 1.5px solid var(--pw-border);
+    border-radius: var(--pw-radius-sm);
+    cursor: pointer;
+    background: none;
+}
+
+.pluginwoo-field-checkbox .wp-on-off-switch {
+    display: inline-block;
+    position: relative;
+    width: 48px;
+    height: 26px;
+}
+
+.pluginwoo-field-checkbox .wp-on-off-switch input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.pluginwoo-field-checkbox .wp-switch-toggle-switch {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: var(--pw-border);
+    border-radius: 26px;
+    transition: background .3s;
+}
+
+.pluginwoo-field-checkbox .wp-switch-toggle-switch::before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    left: 2px;
+    bottom: 2px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform .3s;
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+
+.pluginwoo-field-checkbox .wp-on-off-switch input[type="checkbox"]:checked + .wp-switch-toggle-switch {
+    background: var(--pw-primary);
+}
+
+.pluginwoo-field-checkbox .wp-on-off-switch input[type="checkbox"]:checked + .wp-switch-toggle-switch::before {
+    transform: translateX(22px);
+}
+
+.pluginwoo-field-textarea textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--pw-border);
+    border-radius: var(--pw-radius-sm);
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    background: #f8fafc;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.pluginwoo-field-textarea textarea:focus {
+    border-color: var(--pw-primary);
+    box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+    outline: none;
+}
+
+/* Save button */
+.pluginwoo-save-btn {
+    margin-top: 16px;
+    padding: 12px 32px;
+    font-size: 15px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pluginwoo-footer-info {
+    margin-top: 24px;
+    padding: 16px;
+    background: var(--pw-bg-light);
+    border-radius: var(--pw-radius-sm);
+    font-size: 13px;
+}
+
+.pluginwoo-footer-info p {
+    margin-bottom: 4px;
+}
+
+.pluginwoo-footer-info p:last-child {
+    margin-bottom: 0;
+}

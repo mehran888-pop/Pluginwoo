@@ -1,0 +1,315 @@
+/* ===============================
+   PluginWoo — Store Page Styles
+   creative / modern / default shop page templates
+   =============================== */
+
+/* ─── Creative Store Page ──────────────────── */
+
+.pluginwoo-store-creative {
+    padding: 40px 0 60px;
+    background: var(--pw-bg-light);
+}
+
+.pluginwoo-store-creative .pw-store-top {
+    background: linear-gradient(135deg, var(--pw-primary) 0%, var(--pw-primary-dark) 50%, var(--pw-secondary-dark) 100%);
+    border-radius: var(--pw-radius);
+    padding: 40px;
+    color: #fff;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pluginwoo-store-creative .pw-store-top::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 180px;
+    height: 180px;
+    background: rgba(255,255,255,.06);
+    border-radius: 50%;
+}
+
+.pluginwoo-store-creative .pw-store-top h1 {
+    font-size: 32px;
+    font-weight: 800;
+    font-family: var(--pw-font);
+    margin-bottom: 8px;
+}
+
+.pluginwoo-store-creative .pw-store-top p {
+    opacity: .88;
+    font-size: 15px;
+    max-width: 500px;
+}
+
+/* Featured banner strip */
+.pluginwoo-store-creative .pw-store-banner-strip {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 28px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.pluginwoo-store-creative .pw-store-banner-strip::-webkit-scrollbar {
+    height: 6px;
+}
+
+.pluginwoo-store-creative .pw-store-banner-strip::-webkit-scrollbar-thumb {
+    background: var(--pw-primary);
+    border-radius: 3px;
+}
+
+.pluginwoo-store-creative .pw-strip-item {
+    flex-shrink: 0;
+    width: 240px;
+    background: var(--pw-bg-card);
+    border-radius: var(--pw-radius-sm);
+    overflow: hidden;
+    box-shadow: var(--pw-shadow-sm);
+    cursor: pointer;
+    transition: all .2s;
+    position: relative;
+}
+
+.pluginwoo-store-creative .pw-strip-item.active {
+    box-shadow: var(--pw-shadow-lg);
+    transform: translateY(-4px);
+}
+
+.pluginwoo-store-creative .pw-strip-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+}
+
+.pluginwoo-store-creative .pw-strip-item .pw-strip-info {
+    padding: 10px 14px;
+}
+
+.pluginwoo-store-creative .pw-strip-item .pw-strip-info h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    font-family: var(--pw-font);
+}
+
+/* Filter / Sort bar */
+.pluginwoo-store-creative .pw-store-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.pluginwoo-store-creative .pw-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pluginwoo-store-creative .pw-toolbar-left .pw-filter-btn {
+    padding: 8px 16px;
+    border: 1.5px solid var(--pw-border);
+    border-radius: var(--pw-radius-sm);
+    background: var(--pw-bg-card);
+    font-size: 13px;
+    cursor: pointer;
+    font-family: var(--pw-font);
+    transition: all .15s;
+}
+
+.pluginwoo-store-creative .pw-toolbar-left .pw-filter-btn:hover,
+.pluginwoo-store-creative .pw-toolbar-left .pw-filter-btn.active {
+    border-color: var(--pw-primary);
+    color: var(--pw-primary);
+    background: rgba(79,70,229,.06);
+}
+
+.pluginwoo-store-creative .pw-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pluginwoo-store-creative .pw-sort-select {
+    padding: 8px 12px;
+    border: 1.5px solid var(--pw-border);
+    border-radius: var(--pw-radius-sm);
+    font-size: 13px;
+    background: var(--pw-bg-card);
+    font-family: var(--pw-font);
+    cursor: pointer;
+}
+
+/* Product Grid */
+.pluginwoo-store-creative .pw-store-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 1100px) {
+    .pluginwoo-store-creative .pw-store-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .pluginwoo-store-creative .pw-store-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+    .pluginwoo-store-creative .pw-store-grid { grid-template-columns: 1fr; }
+}
+
+/* Store product card style */
+.pluginwoo-store-creative .pw-store-card {
+    background: var(--pw-bg-card);
+    border-radius: var(--pw-radius);
+    overflow: hidden;
+    box-shadow: var(--pw-shadow-sm);
+    transition: all .25s;
+    text-decoration: none;
+    color: inherit;
+}
+
+.pluginwoo-store-creative .pw-store-card:hover {
+    box-shadow: var(--pw-shadow-lg);
+    transform: translateY(-4px);
+}
+
+.pluginwoo-store-creative .pw-store-card .pw-sc-img {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: var(--pw-bg-light);
+}
+
+.pluginwoo-store-creative .pw-store-card .pw-sc-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .35s;
+}
+
+.pluginwoo-store-creative .pw-store-card:hover .pw-sc-img img {
+    transform: scale(1.08);
+}
+
+.pluginwoo-store-creative .pw-store-card .pw-sc-actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px;
+    background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 100%);
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity .25s;
+}
+
+.pluginwoo-store-creative .pw-store-card:hover .pw-sc-actions {
+    opacity: 1;
+}
+
+.pluginwoo-store-creative .pw-sc-add-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pw-primary);
+    font-size: 20px;
+    box-shadow: var(--pw-shadow);
+    transition: all .2s;
+}
+
+.pluginwoo-store-creative .pw-sc-add-btn:hover {
+    background: var(--pw-primary);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.pluginwoo-store-creative .pw-store-card .pw-sc-info {
+    padding: 12px 14px 14px;
+}
+
+.pluginwoo-store-creative .pw-store-card .pw-sc-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.4;
+    font-family: var(--pw-font);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pluginwoo-store-creative .pw-store-card .pw-sc-price {
+    font-weight: 700;
+    color: var(--pw-primary);
+    font-size: 15px;
+}
+
+.pluginwoo-store-creative .pw-store-card .pw-sc-price del {
+    color: var(--pw-text-muted);
+    font-weight: 400;
+    font-size: 13px;
+    margin-left: 4px;
+}
+
+/* ─── Modern Store ──────────────────────── */
+
+.pluginwoo-store-modern {
+    padding: 30px 0;
+}
+
+.pluginwoo-store-modern .pw-modern-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.pluginwoo-store-modern .pw-modern-header h1 {
+    font-size: 24px;
+    font-family: var(--pw-font);
+}
+
+.pluginwoo-store-modern .pw-modern-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.pluginwoo-store-modern .pw-store-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 992px) { .pluginwoo-store-modern .pw-store-grid-modern { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .pluginwoo-store-modern .pw-store-grid-modern { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 400px) { .pluginwoo-store-modern .pw-store-grid-modern { grid-template-columns: 1fr; } }
+
+/* ─── Default Store ──────────────────────── */
+
+.pluginwoo-store-default {
+    padding: 20px 0;
+}

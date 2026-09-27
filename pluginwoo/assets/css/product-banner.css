@@ -1,0 +1,271 @@
+/* ===============================
+   PluginWoo — Product Banner Element
+   creative product display with banner-style layout
+   =============================== */
+
+.pluginwoo-product-banner {
+    margin: 20px 0;
+    border-radius: var(--pw-radius);
+    overflow: hidden;
+    box-shadow: var(--pw-shadow);
+}
+
+/* ─── Default ─────────────────────────—— */
+
+.pluginwoo-product-banner--default {
+    background: var(--pw-bg-card);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 340px;
+}
+
+@media (max-width: 768px) {
+    .pluginwoo-product-banner--default {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+}
+
+.pluginwoo-product-banner--default .pw-pb-img-col {
+    position: relative;
+    background: var(--pw-bg-light);
+    overflow: hidden;
+    min-height: 340px;
+}
+
+.pluginwoo-product-banner--default .pw-pb-img-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+.pluginwoo-product-banner--default:hover .pw-pb-img-col img {
+    transform: scale(1.06);
+}
+
+.pluginwoo-product-banner--default .pw-pb-img-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--pw-secondary);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.pluginwoo-product-banner--default .pw-pb-info-col {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pluginwoo-product-banner--default .pw-pb-cat {
+    font-size: 12px;
+    color: var(--pw-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 8px;
+}
+
+.pluginwoo-product-banner--default .pw-pb-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-family: var(--pw-font);
+    line-height: 1.3;
+}
+
+.pluginwoo-product-banner--default .pw-pb-desc {
+    color: var(--pw-text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pluginwoo-product-banner--default .pw-pb-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.pluginwoo-product-banner--default .pw-pb-price {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--pw-primary);
+}
+
+.pluginwoo-product-banner--default .pw-pb-price del {
+    font-size: 14px;
+    color: var(--pw-text-muted);
+    font-weight: 400;
+    margin-left: 6px;
+}
+
+/* ─── Creative ────────────────────────────── */
+
+.pluginwoo-product-banner--creative {
+    position: relative;
+    background: var(--pw-bg-card);
+    overflow: hidden;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+}
+
+.pluginwoo-product-banner--creative::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--pw-primary), var(--pw-secondary));
+}
+
+.pluginwoo-product-banner--creative::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(79,70,229,.15) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pw-pulse-bg 3s ease-in-out infinite;
+}
+
+@keyframes pw-pulse-bg {
+    0%, 100% { transform: scale(1); opacity: .7; }
+    50% { transform: scale(1.3); opacity: 1; }
+}
+
+.pluginwoo-product-banner--creative .pw-pbc-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .pluginwoo-product-banner--creative .pw-pbc-inner {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pluginwoo-product-banner--creative .pw-pbc-img {
+    border-radius: var(--pw-radius-sm);
+    overflow: hidden;
+    box-shadow: var(--pw-shadow);
+    transition: transform .3s;
+}
+
+.pluginwoo-product-banner--creative .pw-pbc-img:hover {
+    transform: rotate(-1deg) scale(1.02);
+}
+
+.pluginwoo-product-banner--creative .pw-pbc-img img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.pluginwoo-product-banner--creative .pw-pbc-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pluginwoo-product-banner--creative .pw-pbc-label {
+    display: inline-block;
+    background: var(--pw-accent);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.pluginwoo-product-banner--creative .pw-pbc-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-family: var(--pw-font);
+    line-height: 1.4;
+}
+
+.pluginwoo-product-banner--creative .pw-pbc-desc {
+    color: var(--pw-text-muted);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pluginwoo-product-banner--creative .pw-pbc-price-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.pluginwoo-product-banner--creative .pw-pbc-price {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--pw-primary);
+}
+
+.pluginwoo-product-banner--creative .pw-pbc-rating {
+    color: var(--pw-accent);
+    font-size: 13px;
+}
+
+/* ─── Creative Effects ────────────────────── */
+
+.pluginwoo-pb-effect-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.pluginwoo-pb-effect-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255,255,255,.4) 30%,
+        rgba(255,255,255,.6) 50%,
+        rgba(255,255,255,.4) 70%,
+        transparent
+    );
+    transition: left 0.6s;
+}
+
+.pluginwoo-pb-effect-shine:hover::before {
+    left: 100%;
+}

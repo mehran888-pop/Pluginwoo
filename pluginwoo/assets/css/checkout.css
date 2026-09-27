@@ -1,0 +1,228 @@
+/* ===============================
+   PluginWoo — Checkout Styles
+   قالب‌های صورت‌حساب: default, modern, minimal, sidebar
+   =============================== */
+
+/* ─── Modern Checkout ──────────────────── */
+
+.pluginwoo-checkout-modern {
+    padding: 30px 0;
+}
+
+.pluginwoo-checkout-modern .pw-checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 28px;
+    align-items: start;
+}
+
+@media (max-width: 992px) {
+    .pluginwoo-checkout-modern .pw-checkout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Left: Form */
+.pluginwoo-checkout-modern .pw-checkout-form-section {
+    background: var(--pw-bg-card);
+    border-radius: var(--pw-radius);
+    padding: 28px;
+    box-shadow: var(--pw-shadow-sm);
+}
+
+.pluginwoo-checkout-modern .pw-checkout-section-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--pw-border);
+    font-family: var(--pw-font);
+}
+
+.pluginwoo-checkout-modern .pw-form-row {
+    margin-bottom: 20px;
+}
+
+.pluginwoo-checkout-modern .pw-form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--pw-text);
+    font-family: var(--pw-font);
+}
+
+.pluginwoo-checkout-modern .pw-form-input,
+.pluginwoo-checkout-modern .pw-form-select,
+.pluginwoo-checkout-modern .pw-form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--pw-border);
+    border-radius: var(--pw-radius-sm);
+    font-size: 14px;
+    font-family: var(--pw-font);
+    color: var(--pw-text);
+    background: #fff;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.pluginwoo-checkout-modern .pw-form-input:focus,
+.pluginwoo-checkout-modern .pw-form-select:focus,
+.pluginwoo-checkout-modern .pw-form-textarea:focus {
+    outline: none;
+    border-color: var(--pw-primary);
+    box-shadow: 0 0 0 3px rgba(79,70,229,.15);
+}
+
+.pluginwoo-checkout-modern .pw-form-error {
+    border-color: #ef4444 !important;
+    background: #fef2f2;
+}
+
+.pluginwoo-checkout-modern .pw-form-hint {
+    font-size: 12px;
+    color: var(--pw-text-muted);
+    margin-top: 4px;
+}
+
+/* Checkbox / Radio */
+.pluginwoo-checkout-modern .pw-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pluginwoo-checkout-modern .pw-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.pluginwoo-checkout-modern .pw-checkbox-label input[type="checkbox"],
+.pluginwoo-checkout-modern .pw-checkbox-label input[type="radio"] {
+    accent-color: var(--pw-primary);
+    width: 16px;
+    height: 16px;
+}
+
+/* Right: Order Summary */
+.pluginwoo-checkout-modern .pw-order-summary {
+    background: linear-gradient(135deg, var(--pw-primary) 0%, var(--pw-primary-dark) 100%);
+    border-radius: var(--pw-radius);
+    padding: 24px;
+    color: #fff;
+    position: sticky;
+    top: 20px;
+}
+
+.pluginwoo-checkout-modern .pw-order-summary h3 {
+    font-size: 17px;
+    margin-bottom: 20px;
+    font-family: var(--pw-font);
+}
+
+.pluginwoo-checkout-modern .pw-os-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 14px;
+    opacity: .9;
+}
+
+.pluginwoo-checkout-modern .pw-os-row img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 10px;
+    background: rgba(255,255,255,.2);
+}
+
+.pluginwoo-checkout-modern .pw-os-product {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pluginwoo-checkout-modern .pw-os-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,.3);
+    margin-top: 16px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.pluginwoo-checkout-modern .pw-os-total span:last-child {
+    font-size: 20px;
+}
+
+.pluginwoo-checkout-modern .pw-os-button {
+    width: 100%;
+    margin-top: 16px;
+    background: #fff;
+    color: var(--pw-primary);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px;
+    border: none;
+    border-radius: var(--pw-radius-sm);
+    cursor: pointer;
+    font-family: var(--pw-font);
+    transition: all .2s;
+}
+
+.pluginwoo-checkout-modern .pw-os-button:hover {
+    background: var(--pw-bg-light);
+    transform: translateY(-1px);
+}
+
+/* ─── Minimal Checkout ──────────────────── */
+
+.pluginwoo-checkout-minimal {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.pluginwoo-checkout-minimal .pw-min-field {
+    margin-bottom: 16px;
+}
+
+.pluginwoo-checkout-minimal label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.pluginwoo-checkout-minimal input,
+.pluginwoo-checkout-minimal select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--pw-border);
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* ─── Sidebar Checkout ──────────────────── */
+
+.pluginwoo-checkout-sidebar {
+    padding: 20px 0;
+}
+
+.pluginwoo-checkout-sidebar .pw-checkout-sidebar-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .pluginwoo-checkout-sidebar .pw-checkout-sidebar-layout {
+        grid-template-columns: 1fr;
+    }
+}

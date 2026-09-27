@@ -1,0 +1,274 @@
+/* ===============================
+   PluginWoo — Cart Styles
+   قالب‌های سبد خرید: default, modern, minimal, sidebar
+   =============================== */
+
+/* ─── Modern Cart ───────────────────────── */
+
+.pluginwoo-cart-modern {
+    padding: 40px 0;
+    background: var(--pw-bg-light);
+}
+
+.pluginwoo-cart-modern .pluginwoo-cart-header {
+    background: linear-gradient(135deg, var(--pw-primary) 0%, var(--pw-secondary-dark) 100%);
+    border-radius: var(--pw-radius);
+    padding: 32px;
+    margin-bottom: 32px;
+    color: #fff;
+}
+
+.pluginwoo-cart-modern .pluginwoo-cart-header h2 {
+    font-size: 26px;
+    margin-bottom: 8px;
+    font-family: var(--pw-font);
+}
+
+.pluginwoo-cart-modern .pluginwoo-cart-header p {
+    opacity: .85;
+    font-size: 15px;
+}
+
+.pluginwoo-cart-modern .pluginwoo-cart-items {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+}
+
+@media (max-width: 768px) {
+    .pluginwoo-cart-modern .pluginwoo-cart-items {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pluginwoo-cart-modern .pluginwoo-cart-table-wrap {
+    background: var(--pw-bg-card);
+    border-radius: var(--pw-radius);
+    overflow: hidden;
+    box-shadow: var(--pw-shadow-sm);
+}
+
+.pluginwoo-cart-modern table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.pluginwoo-cart-modern thead th {
+    background: var(--pw-bg-light);
+    padding: 14px 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--pw-text-muted);
+    font-weight: 700;
+}
+
+.pluginwoo-cart-modern tbody td {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--pw-border);
+    vertical-align: middle;
+}
+
+.pluginwoo-cart-modern tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.pluginwoo-cart-modern .pw-cart-product-thumb {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: var(--pw-radius-sm);
+    background: var(--pw-bg-light);
+}
+
+.pluginwoo-cart-modern .pw-cart-product-info h4 {
+    font-size: 15px;
+    margin-bottom: 4px;
+    font-family: var(--pw-font);
+}
+
+.pluginwoo-cart-modern .pw-cart-product-info a {
+    color: var(--pw-text);
+    text-decoration: none;
+}
+
+.pluginwoo-cart-modern .pw-cart-product-info a:hover {
+    color: var(--pw-primary);
+}
+
+.pluginwoo-cart-modern .pw-price {
+    font-weight: 700;
+    color: var(--pw-primary);
+    font-size: 16px;
+}
+
+.pluginwoo-cart-modern .pw-qty-minus,
+.pluginwoo-cart-modern .pw-qty-plus {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--pw-border);
+    background: var(--pw-bg-card);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--pw-text);
+    transition: all .15s ease;
+}
+
+.pluginwoo-cart-modern .pw-qty-minus:hover,
+.pluginwoo-cart-modern .pw-qty-plus:hover {
+    background: var(--pw-primary);
+    color: #fff;
+    border-color: var(--pw-primary);
+}
+
+.pluginwoo-cart-modern .pw-qty-input {
+    width: 48px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+    border: 1px solid var(--pw-border);
+    border-radius: var(--pw-radius-sm);
+    padding: 6px;
+}
+
+.pluginwoo-cart-modern .pw-cart-remove {
+    color: var(--pw-text-muted);
+    cursor: pointer;
+    font-size: 18px;
+    transition: color .15s;
+}
+
+.pluginwoo-cart-modern .pw-cart-remove:hover {
+    color: #ef4444;
+}
+
+/* Sidebar summary */
+.pluginwoo-cart-modern .pluginwoo-cart-summary {
+    background: var(--pw-bg-card);
+    border-radius: var(--pw-radius);
+    padding: 24px;
+    box-shadow: var(--pw-shadow);
+    position: sticky;
+    top: 20px;
+}
+
+.pluginwoo-cart-modern .pluginwoo-cart-summary h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: var(--pw-font);
+    border-bottom: 2px solid var(--pw-border);
+    padding-bottom: 12px;
+}
+
+.pluginwoo-cart-modern .pw-summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--pw-text-muted);
+}
+
+.pluginwoo-cart-modern .pw-summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--pw-text);
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 2px solid var(--pw-border);
+}
+
+.pluginwoo-cart-modern .pw-summary-total span {
+    color: var(--pw-primary);
+}
+
+/* ─── Minimal Cart ──────────────────────── */
+
+.pluginwoo-cart-minimal {
+    padding: 24px 0;
+    background: #fff;
+}
+
+.pluginwoo-cart-minimal .pw-min-table {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.pluginwoo-cart-minimal table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.pluginwoo-cart-minimal th,
+.pluginwoo-cart-minimal td {
+    padding: 10px 14px;
+    text-align: right;
+    border-bottom: 1px solid var(--pw-border);
+}
+
+.pluginwoo-cart-minimal th {
+    font-weight: 700;
+    color: var(--pw-text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* ─── Sidebar Cart ──────────────────────── */
+
+.pluginwoo-cart-sidebar {
+    padding: 20px 0;
+}
+
+.pluginwoo-cart-sidebar .pluginwoo-cart-sidebar-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .pluginwoo-cart-sidebar .pluginwoo-cart-sidebar-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pluginwoo-cart-sidebar .pw-sidebar-cart {
+    background: var(--pw-primary);
+    color: #fff;
+    border-radius: var(--pw-radius);
+    padding: 20px;
+    position: sticky;
+    top: 16px;
+    height: fit-content;
+}
+
+.pluginwoo-cart-sidebar .pw-sidebar-cart h4 {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.pluginwoo-cart-sidebar .pw-sidebar-cart .pw-sc-item {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+}
+
+.pluginwoo-cart-sidebar .pw-sidebar-cart .pw-sc-item:last-child {
+    border-bottom: none;
+}
+
+.pluginwoo-cart-sidebar .pw-sidebar-cart img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: rgba(255,255,255,.2);
+    flex-shrink: 0;
+}
